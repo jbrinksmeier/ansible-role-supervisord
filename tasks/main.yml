@@ -3,11 +3,12 @@
   yum:
     name: supervisor
     state: present
-  notify:
-    restart supervisord
 
-- name: Enable Supervisord service
-  notify: start supervisord
+- name: Ensure supervisord service
+  service:
+    name: supervisord
+    enabled: true
+  when: ansible_connection != 'docker'
 
 - name: Update /etc/supervisord.conf to executable
   file:
