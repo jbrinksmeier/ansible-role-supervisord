@@ -7,9 +7,7 @@
     restart supervisord
 
 - name: Enable Supervisord service
-  service:
-    name: supervisord
-    enabled: yes
+  notify: start supervisord
 
 - name: Update /etc/supervisord.conf to executable
   file:

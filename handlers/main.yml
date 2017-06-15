@@ -3,3 +3,11 @@
   service:
     name: supervisord
     state: restarted
+  when: ansible_connection != 'docker'
+
+- name: start supervisord
+  service:
+      name: supervisord
+      state: started
+      enabled: yes
+  when: ansible_connection != 'docker'
